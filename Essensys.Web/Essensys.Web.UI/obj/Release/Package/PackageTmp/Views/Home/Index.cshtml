@@ -1,0 +1,267 @@
+﻿@model Essensys.Repository.DTO.EsUser
+@{
+    ViewBag.Title = "Pilotage de votre boitier";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+@section head{
+    <script src="/Scripts/jquery.colorbox.js"></script>
+    <script src="/Scripts/essensys.js"></script>
+    <link href="/Content/colorbox.css" rel="stylesheet"/>
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class='esys-zone' id="chauffagezjcontainer">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Chauffage Zone Jour</h3>
+        <div class='clear'>
+            @Html.Label("auto", "Automatique (planning)")
+            @Html.RadioButton("chauffagezj", "0", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("anticipe", "Anticipé")
+            @Html.RadioButton("chauffagezj", "32", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("confort", "Forçage confort")
+            @Html.RadioButton("chauffagezj", "16", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco", "Forçage éco")
+            @Html.RadioButton("chauffagezj", "17", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco+", "Forçage éco+")
+            @Html.RadioButton("chauffagezj", "18", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco++", "Forçage éco++")
+            @Html.RadioButton("chauffagezj", "19", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("hgel", "Forçage hors gel")
+            @Html.RadioButton("chauffagezj", "20", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("off", "OFF")
+            @Html.RadioButton("chauffagezj", "5", false)
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="chauffagezncontainer">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Chauffage Zone Nuit</h3>
+        <div class='clear'>
+            @Html.Label("auto", "Automatique (planning)")
+            @Html.RadioButton("chauffagezn", "0", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("anticipe", "Anticipé")
+            @Html.RadioButton("chauffagezn", "32", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("confort", "Forçage confort")
+            @Html.RadioButton("chauffagezn", "16", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco", "Forçage éco")
+            @Html.RadioButton("chauffagezn", "17", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco+", "Forçage éco+")
+            @Html.RadioButton("chauffagezn", "18", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco++", "Forçage éco++")
+            @Html.RadioButton("chauffagezn", "19", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("hgel", "Forçage hors gel")
+            @Html.RadioButton("chauffagezn", "20", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("off", "OFF")
+            @Html.RadioButton("chauffagezn", "5", false)
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="chauffagesdb1container">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Chauffage Salle de bain 1</h3>
+        <div class='clear'>
+            @Html.Label("auto", "Automatique (planning)")
+            @Html.RadioButton("chauffagesdb1", "0", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("confort", "Forçage confort")
+            @Html.RadioButton("chauffagesdb1", "16", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco", "Forçage éco")
+            @Html.RadioButton("chauffagesdb1", "17", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco+", "Forçage éco+")
+            @Html.RadioButton("chauffagesdb1", "18", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco++", "Forçage éco++")
+            @Html.RadioButton("chauffagesdb1", "19", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("hgel", "Forçage hors gel")
+            @Html.RadioButton("chauffagesdb1", "20", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("off", "OFF")
+            @Html.RadioButton("chauffagesdb1", "5", false)
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="chauffagesdb2container">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Chauffage Salle de bain 2</h3>
+        <div class='clear'>
+            @Html.Label("auto", "Automatique (planning)")
+            @Html.RadioButton("chauffagesdb2", "0", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("confort", "Forçage confort")
+            @Html.RadioButton("chauffagesdb2", "16", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco", "Forçage éco")
+            @Html.RadioButton("chauffagesdb2", "17", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco+", "Forçage éco+")
+            @Html.RadioButton("chauffagesdb2", "18", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco++", "Forçage éco++")
+            @Html.RadioButton("chauffagesdb2", "19", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("hgel", "Forçage hors gel")
+            @Html.RadioButton("chauffagesdb2", "20", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("off", "OFF")
+            @Html.RadioButton("chauffagesdb2", "5", false)
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="alarmecontainer" style="width:700px">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Alarme</h3>
+        <div class="float-left alarmeor" style="width:60px">
+            ou
+        </div>
+        <div class="float-right" id="alcodecont" style='width:620px'>
+            <div class='clear' style='width:580px'>
+            @Html.Label("codealarme", "Code de l'alarme", new { style = "margin-top:10px;width:200px;text-align:left" })
+            @Html.TextBox("codealarme", "", new { size = "10", maxlength = "10", style = "width:auto;float:left" })
+            </div>
+            <div class='clear' style='width:580px;margin-top:30px'>
+                @Html.Label("question", ViewBag.Question as string, new { style = "margin-top:10px;width:200px;text-align:left" })
+                @Html.TextBox("question", "", new { size = "40", maxlength = "255", style = "width:auto;float:left" })
+            </div>
+        </div>
+        <div class='clear alarmeoption disabled'>
+            @Html.Label("alarmeon", "ON", new { enabled = "false" })
+            @Html.RadioButton("alarme", "on", false, new { disabled = "true" })
+        </div>
+        <div class='clear alarmeoption disabled'>
+            @Html.Label("alarmeon", "OFF", new { enabled = "false" })
+            @Html.RadioButton("alarme", "off", true, new { disabled = "true" })
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="arrosagecontainer">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Arrosage</h3>
+        <div class='clear'>
+            @Html.Label("auto", "Automatique (planning)")
+            @Html.RadioButton("arrosage", "255", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("15m", "Forçage arrosage 15 minutes")
+            @Html.RadioButton("arrosage", "15", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("30m", "Forçage arrosage 30 minutes")
+            @Html.RadioButton("arrosage", "30", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("1h", "Forçage arrosage 1 heure")
+            @Html.RadioButton("arrosage", "60", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("off", "OFF")
+            @Html.RadioButton("arrosage", "0", false)
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="cumuluscontainer">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Cumulus</h3>
+        <div class='clear'>
+            @Html.Label("ON", "ON (autonome)")
+            @Html.RadioButton("cumulus", "0", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("HPHC", "Suivi HP/HC")
+            @Html.RadioButton("cumulus", "1", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("OFF", "OFF")
+            @Html.RadioButton("cumulus", "2", false)
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="voletstorecontainer">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Volets roulants et store</h3>
+        <div class='clear'>
+            @Html.Label("volet", "Descendre les volets roulants")
+            @Html.CheckBox("volet", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("store", "Remonter le store")
+            @Html.CheckBox("store", false)
+        </div>
+    </div>
+</div>
+<div class='esys-zone' style="width:500px">
+    <h3>Téléphone</h3>
+    <table class='esys-phonelist'>
+        <thead>
+            <tr>
+                <th style="width:20px"></th>
+                <th class='name'>Nom</th>
+                <th class='number'>Numéro</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class='phone-info'>10 SMS restant pour le mois en cours</div>
+</div>
+    <input type="button" id="esys-valid" value="Validation" class="float-left" data-waitbox="@ViewBag.WaitBox" />
+    <input type="button" id="esys-undo" value="Annulation" class="float-left" />
+    <div id="esys-undoinfo">et déconnexion</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Se connecter";
+    Layout = "~/Views/Shared/BlankLayout.cshtml";
+}
+
+@section Side{
+    <h2>Connectez-vous</h2>
+    <h4>Renseignez votre mail et votre mot de passe pour accéder à la console d'accès à distance.</h4>
+    <ul class='es-morelink'>
+        <li>@Html.ActionLink("Nouveau client ? Enregistrez-vous ici", "Register", "Account")</li>
+        <li>Pourquoi s'enregistrer ? Utilisez toutes les possibilités d'Essensys</li>
+    </ul>
+}
+@section head{
+
+}
+<div class='es-login'>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <ol>
+                <li>
+                    <label for="Mail">Mail</label>
+                    <input data-val="true" data-val-regex="Veuillez entrer une adresse email valide" data-val-regex-pattern="^[a-z0-9_\+-]+(\.[a-z0-9_\+-]+)*@@[a-z0-9-]+(\.[a-z0-9]+)*\.([a-z]{2,4})$" data-val-required="Veuillez entrez votre adresse EMail" id="Mail" name="Mail" type="text" value="" class="input-validation-error">
+                    <span class="field-validation-error" data-valmsg-for="Mail" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label for="Password">Mot de passe</label>
+                    <input data-val="true" data-val-required="Veuillez entrez le mot de passe désiré" id="Password" name="Password" type="password">
+                    <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label for="RememberMe">Se souvenir de moi</label>
+                    <input data-val="true" id="RememberMe" name="RememberMe" type="checkbox">
+                    <input name="RememberMe" type="hidden" value="false">
+                </li>
+            </ol>
+        </fieldset>
+        <input type="submit" value="Se connecter" />
+    }
+</div>
+
+    <p>Mot de passe perdu ? Cliquez ici !</p>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

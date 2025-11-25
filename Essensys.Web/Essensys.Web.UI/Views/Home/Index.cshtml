@@ -1,0 +1,562 @@
+﻿@model Essensys.Repository.DTO.EsUser
+@{
+    ViewBag.Title = "Pilotage de votre boitier";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+@section head{
+    <link href="/Content/colorbox.css" rel="stylesheet"/>
+    <script src="/Scripts/jquery-ui-1.8.20.js"></script>
+    <link href="/Content/jqueryui/jquery-ui.css" rel="stylesheet"/>
+    <script src="/Scripts/jquery.colorbox.js"></script>
+    <script src="/Scripts/essensys.js"></script>
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="es-mainaction">
+    <input type="button" id="esys-undo" style="float:left;margin-left:26px" value="Annulation" class="float-left" />
+    <input type="button" id="esys-valid" style="float:left" value="Validation" class="float-left" data-waitbox="@ViewBag.WaitBox" />
+    <div class="esys-undoinfotop">et déconnexion</div>
+    <div class="esys-undoinfotop" style="left:154px">ou rafraîchir</div>
+    </div>
+    
+<div class='esys-zone' id="alarmecontainer" style="width:400px">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Alarme</h3>
+        <div class="float-left alarmeor" style="width:20px;display:none">
+            ou
+        </div>
+        <div class="" id="alcodecont" style='width:400px'>
+            <div class='clear' style='width:380px;display:none'>
+            @Html.Label("codealarme", "Code de l'alarme", new { style = "display:block;float:none;width:200px;text-align:left" })
+            @Html.TextBox("codealarme", "", new { size = "10", maxlength = "4", style = "width:auto;float:left" })
+            </div>
+            <div class='clear' style='width:400px;margin-top:20px'>
+                @Html.Label("question", ViewBag.Question as string, new { style = "display:block;float:none;width:200px;text-align:left" })
+                @Html.TextBox("question", "", new { size = "40", maxlength = "255", style = "width:auto;float:left;margin-top:10px" })
+                <input type="button" value="Vérifier" />
+            </div>
+        </div>
+        <div class='clear alarmeoption disabled'>
+            @Html.Label("alarmeon", "ON", new { enabled = "false" })
+            @Html.RadioButton("alarme", "on", false, new { disabled = "true" })
+        </div>
+        <div class='clear alarmeoption disabled'>
+            @Html.Label("alarmeon", "OFF", new { enabled = "false" })
+            @Html.RadioButton("alarme", "off", true, new { disabled = "true" })
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="chauffagezjcontainer">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Chauffage Zone Jour</h3>
+        <div class='clear'>
+            @Html.Label("auto", "Automatique (planning)")
+            @Html.RadioButton("chauffagezj", "1", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("anticipe", "Anticipé")
+            @Html.RadioButton("chauffagezj", "32", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("confort", "Forçage confort")
+            @Html.RadioButton("chauffagezj", "17", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco", "Forçage éco")
+            @Html.RadioButton("chauffagezj", "18", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco+", "Forçage éco+")
+            @Html.RadioButton("chauffagezj", "19", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco++", "Forçage éco++")
+            @Html.RadioButton("chauffagezj", "20", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("hgel", "Forçage hors gel")
+            @Html.RadioButton("chauffagezj", "21", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("off", "OFF")
+            @Html.RadioButton("chauffagezj", "16", false)
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="chauffagezncontainer">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Chauffage Zone Nuit</h3>
+        <div class='clear'>
+            @Html.Label("auto", "Automatique (planning)")
+            @Html.RadioButton("chauffagezn", "1", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("anticipe", "Anticipé")
+            @Html.RadioButton("chauffagezn", "32", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("confort", "Forçage confort")
+            @Html.RadioButton("chauffagezn", "17", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco", "Forçage éco")
+            @Html.RadioButton("chauffagezn", "18", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco+", "Forçage éco+")
+            @Html.RadioButton("chauffagezn", "19", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco++", "Forçage éco++")
+            @Html.RadioButton("chauffagezn", "20", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("hgel", "Forçage hors gel")
+            @Html.RadioButton("chauffagezn", "21", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("off", "OFF")
+            @Html.RadioButton("chauffagezn", "16", false)
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="chauffagesdb1container">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Chauffage Salle de bain 1</h3>
+        <div class='clear'>
+            @Html.Label("auto", "Automatique (planning)")
+            @Html.RadioButton("chauffagesdb1", "1", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("confort", "Forçage confort")
+            @Html.RadioButton("chauffagesdb1", "17", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco", "Forçage éco")
+            @Html.RadioButton("chauffagesdb1", "18", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco+", "Forçage éco+")
+            @Html.RadioButton("chauffagesdb1", "19", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco++", "Forçage éco++")
+            @Html.RadioButton("chauffagesdb1", "20", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("hgel", "Forçage hors gel")
+            @Html.RadioButton("chauffagesdb1", "21", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("off", "OFF")
+            @Html.RadioButton("chauffagesdb1", "16", false)
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="chauffagesdb2container">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Chauffage Salle de bain 2</h3>
+        <div class='clear'>
+            @Html.Label("auto", "Automatique (planning)")
+            @Html.RadioButton("chauffagesdb2", "1", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("confort", "Forçage confort")
+            @Html.RadioButton("chauffagesdb2", "17", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco", "Forçage éco")
+            @Html.RadioButton("chauffagesdb2", "18", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco+", "Forçage éco+")
+            @Html.RadioButton("chauffagesdb2", "19", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("eco++", "Forçage éco++")
+            @Html.RadioButton("chauffagesdb2", "20", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("hgel", "Forçage hors gel")
+            @Html.RadioButton("chauffagesdb2", "21", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("off", "OFF")
+            @Html.RadioButton("chauffagesdb2", "16", false)
+        </div>
+    </div>
+</div>
+
+<div class='esys-zone' id="cumuluscontainer">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Cumulus</h3>
+        <div class='clear'>
+            @Html.Label("ON", "ON (autonome)")
+            @Html.RadioButton("cumulus", "0", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("HPHC", "Suivi HP/HC")
+            @Html.RadioButton("cumulus", "1", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("OFF", "OFF")
+            @Html.RadioButton("cumulus", "2", false)
+        </div>
+    </div>
+</div>
+    
+<!--<div class='esys-zone' id="voletstorecontainer">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Volets roulants et store</h3>
+        <div class='clear'>
+            @Html.Label("volet", "Descendre les volets roulants")
+            @Html.CheckBox("volet", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("store", "Remonter le store")
+            @Html.CheckBox("store", false)
+        </div>
+    </div>
+</div>-->
+
+<div class='esys-zone' id="arrosagecontainer">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Arrosage</h3>
+        <div class='clear'>
+            @Html.Label("auto", "Automatique (planning)")
+            @Html.RadioButton("arrosage", "255", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("15m", "Forçage arrosage 15 minutes")
+            @Html.RadioButton("arrosage", "15", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("30m", "Forçage arrosage 30 minutes")
+            @Html.RadioButton("arrosage", "30", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("1h", "Forçage arrosage 1 heure")
+            @Html.RadioButton("arrosage", "60", false)
+        </div>
+        <div class='clear'>
+            @Html.Label("off", "OFF")
+            @Html.RadioButton("arrosage", "0", false)
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="voletroulantstore">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Volets roulants et store</h3>
+        <div class='clear large'>
+            <a href='#' id='openvol' class='radiocol1g'>Ouvrir</a>
+            <a href='#' id='closevol' class='radiocol2g'>Fermer</a>
+        </div>
+        <div class='clear large'>
+            @Html.Label("volet1salon", "Volet 1 Salon")
+            @Html.RadioButton("volet1salon", "1", false, new { @class = "radiocol1 escpl", dindex = "617", dvalue="1" })
+            @Html.RadioButton("volet1salon", "0", false, new { @class = "radiocol2 escpl", dindex = "620", dvalue = "1" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("volet2salon", "Volet 2 Salon")
+            @Html.RadioButton("volet2salon", "1", false, new { @class = "radiocol1 escpl", dindex = "617", dvalue = "2" })
+            @Html.RadioButton("volet2salon", "0", false, new { @class = "radiocol2 escpl", dindex = "620", dvalue = "2" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("volet3salon", "Volet 3 Salon")
+            @Html.RadioButton("volet3salon", "1", false, new { @class = "radiocol1 escpl", dindex = "617", dvalue = "4" })
+            @Html.RadioButton("volet3salon", "0", false, new { @class = "radiocol2 escpl", dindex = "620", dvalue = "4" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("volet1salleamanger", "Volet 1 Salle à Manger")
+            @Html.RadioButton("volet1salleamanger", "1", false, new { @class = "radiocol1 escpl", dindex = "617", dvalue = "8" })
+            @Html.RadioButton("volet1salleamanger", "0", false, new { @class = "radiocol2 escpl", dindex = "620", dvalue = "8" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("volet2salleamanger", "Volet 2 Salle à Manger")
+            @Html.RadioButton("volet2salleamanger", "1", false, new { @class = "radiocol1 escpl", dindex = "617", dvalue = "16" })
+            @Html.RadioButton("volet2salleamanger", "0", false, new { @class = "radiocol2 escpl", dindex = "620", dvalue = "16" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("volet1cuisine", "Volet 1 Cuisine")
+            @Html.RadioButton("volet1cuisine", "1", false, new { @class = "radiocol1 escpl", dindex = "619", dvalue = "1" })
+            @Html.RadioButton("volet1cuisine", "0", false, new { @class = "radiocol2 escpl", dindex = "622", dvalue = "1" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("volet2cuisine", "Volet 2 Cuisine")
+            @Html.RadioButton("volet2cuisine", "1", false, new { @class = "radiocol1 escpl", dindex = "619", dvalue = "2" })
+            @Html.RadioButton("volet2cuisine", "0", false, new { @class = "radiocol2 escpl", dindex = "622", dvalue = "2" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("voletsdb", "Volet Salle de Bain 1")
+            @Html.RadioButton("voletsdb", "1", false, new { @class = "radiocol1 escpl", dindex = "619", dvalue = "4" })
+            @Html.RadioButton("voletsdb", "0", false, new { @class = "radiocol2 escpl", dindex = "622", dvalue = "4" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("volet1gdchamb", "Volet 1 Grande Chambre")
+            @Html.RadioButton("volet1gdchamb", "1", false, new { @class = "radiocol1 escpl", dindex = "618", dvalue = "1" })
+            @Html.RadioButton("volet1gdchamb", "0", false, new { @class = "radiocol2 escpl", dindex = "621", dvalue = "1" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("volet2gdchamb", "Volet 2 Grande Chambre")
+            @Html.RadioButton("volet2gdchamb", "1", false, new { @class = "radiocol1 escpl", dindex = "618", dvalue = "2" })
+            @Html.RadioButton("volet2gdchamb", "0", false, new { @class = "radiocol2 escpl", dindex = "621", dvalue = "2" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("volet1ptchamb", "Volet Petite Chambre 1")
+            @Html.RadioButton("volet1ptchamb", "1", false, new { @class = "radiocol1 escpl", dindex = "618", dvalue = "4" })
+            @Html.RadioButton("volet1ptchamb", "0", false, new { @class = "radiocol2 escpl", dindex = "621", dvalue = "4" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("volet2ptchamb", "Volet Petite Chambre 2")
+            @Html.RadioButton("volet2ptchamb", "1", false, new { @class = "radiocol1 escpl", dindex = "618", dvalue = "8" })
+            @Html.RadioButton("volet2ptchamb", "0", false, new { @class = "radiocol2 escpl", dindex = "621", dvalue = "8" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("volet3ptchamb", "Volet Petite Chambre 3")
+            @Html.RadioButton("volet3ptchamb", "1", false, new { @class = "radiocol1 escpl", dindex = "618", dvalue = "16" })
+            @Html.RadioButton("volet3ptchamb", "0", false, new { @class = "radiocol2 escpl", dindex = "621", dvalue = "16" })
+        </div>
+        <div class='clear large'>
+            @Html.Label("voletbureau", "Volet Bureau")
+            @Html.RadioButton("voletbureau", "1", false, new { @class = "radiocol1 escpl", dindex = "617", dvalue = "32" })
+            @Html.RadioButton("voletbureau", "0", false, new { @class = "radiocol2 escpl", dindex = "620", dvalue = "32" })
+        </div>
+        <div class='voletstorezone clear large'>
+            @Html.Label("voletstore", "Volet \"Store\"")
+            @Html.RadioButton("voletstore", "1", false, new { @class = "radiocol1 escpl", dindex = "619", dvalue = "8" })
+            @Html.RadioButton("voletstore", "0", false, new { @class = "radiocol2 escpl", dindex = "622", dvalue = "8" })
+        </div>
+        <div class='clear large' style='margin-top:15px'>
+            <div class='radiocol1g'>Déplier</div>
+            <div class='radiocol2g'>Replier</div>
+        </div>
+        <div class='storezone clear large'>
+            @Html.Label("store", "Store")
+            @Html.RadioButton("store", "1", false, new { @class = "radiocol1 escpl", dindex = "622", dvalue = "8" })
+            @Html.RadioButton("store", "0", false, new { @class = "radiocol2 escpl", dindex = "619", dvalue = "8" })
+        </div>
+    </div>
+</div>
+<div class='esys-zone' id="eclairage">
+    <span>Changement de paramètre à valider</span>
+    <div class='esys-validinfo'>
+        <h3>Eclairages</h3>
+        <div class='clear large' style='margin-top:15px;margin-bottom:0px'>
+            <div class='radiocoltitle'>Principaux</div>
+        </div>
+        <div class="large" style='margin-top:0px'>
+            <div class='clear large'>
+                <a href='#' id='openecldir' class='radiocol1g on'>On</a>
+                <a href='#' id='closeecldir' class='radiocol2g off'>Off</a>
+            </div>
+            <div class='clear large'>
+                @Html.Label("terrasse", "Terrasse")
+                @Html.RadioButton("terrasse", "1", false, new { @class = "radiocol1 escpl", dindex = "616", dvalue = "4" })
+                @Html.RadioButton("terrasse", "0", false, new { @class = "radiocol2 escpl", dindex = "610", dvalue = "4" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("entree", "Entrée")
+                @Html.RadioButton("entree", "1", false, new { @class = "radiocol1 escpl", dindex = "611", dvalue = "1" })
+                @Html.RadioButton("entree", "0", false, new { @class = "radiocol2 escpl", dindex = "605", dvalue = "1" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("escalier", "Escalier")
+                @Html.RadioButton("escalier", "1", false, new { @class = "radiocol1 escpl", dindex = "613", dvalue = "1" })
+                @Html.RadioButton("escalier", "0", false, new { @class = "radiocol2 escpl", dindex = "607", dvalue = "1" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("deg1", "Dégagement 1")
+                @Html.RadioButton("deg1", "1", false, new { @class = "radiocol1 escpl", dindex = "616", dvalue = "1" })
+                @Html.RadioButton("deg1", "0", false, new { @class = "radiocol2 escpl", dindex = "610", dvalue = "1" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("deg2", "Dégagement 2")
+                @Html.RadioButton("deg2", "1", false, new { @class = "radiocol1 escpl", dindex = "616", dvalue = "2" })
+                @Html.RadioButton("deg2", "0", false, new { @class = "radiocol2 escpl", dindex = "610", dvalue = "2" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("pieceserv", "Pièce de service")
+                @Html.RadioButton("pieceserv", "1", false, new { @class = "radiocol1 escpl", dindex = "615", dvalue = "128" })
+                @Html.RadioButton("pieceserv", "0", false, new { @class = "radiocol2 escpl", dindex = "609", dvalue = "128" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("ann1", "Annexe 1")
+                @Html.RadioButton("ann1", "1", false, new { @class = "radiocol1 escpl", dindex = "616", dvalue = "8" })
+                @Html.RadioButton("ann1", "0", false, new { @class = "radiocol2 escpl", dindex = "610", dvalue = "8" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("ann2", "Annexe 2")
+                @Html.RadioButton("ann2", "1", false, new { @class = "radiocol1 escpl", dindex = "616", dvalue = "16" })
+                @Html.RadioButton("ann2", "0", false, new { @class = "radiocol2 escpl", dindex = "610", dvalue = "16" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("salon", "Salon")
+                @Html.RadioButton("salon", "1", false, new { @class = "radiocol1 escpl", dindex = "612", dvalue = "128" })
+                @Html.RadioButton("salon", "0", false, new { @class = "radiocol2 escpl", dindex = "606", dvalue = "128" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("sam", "Salle à Manger")
+                @Html.RadioButton("sam", "1", false, new { @class = "radiocol1 escpl", dindex = "612", dvalue = "64" })
+                @Html.RadioButton("sam", "0", false, new { @class = "radiocol2 escpl", dindex = "606", dvalue = "64" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("cuisine", "Cuisine")
+                @Html.RadioButton("cuisine", "1", false, new { @class = "radiocol1 escpl", dindex = "615", dvalue = "1" })
+                @Html.RadioButton("cuisine", "0", false, new { @class = "radiocol2 escpl", dindex = "609", dvalue = "1" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("sdb1", "Salle de Bain 1")
+                @Html.RadioButton("sdb1", "1", false, new { @class = "radiocol1 escpl", dindex = "616", dvalue = "128" })
+                @Html.RadioButton("sdb1", "0", false, new { @class = "radiocol2 escpl", dindex = "610", dvalue = "128" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("sdb2", "Salle de Bain 2")
+                @Html.RadioButton("sdb2", "1", false, new { @class = "radiocol1 escpl", dindex = "615", dvalue = "8" })
+                @Html.RadioButton("sdb2", "0", false, new { @class = "radiocol2 escpl", dindex = "609", dvalue = "8" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("wc1", "WC 1")
+                @Html.RadioButton("wc1", "1", false, new { @class = "radiocol1 escpl", dindex = "615", dvalue = "32" })
+                @Html.RadioButton("wc1", "0", false, new { @class = "radiocol2 escpl", dindex = "609", dvalue = "32" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("wc2", "WC 2")
+                @Html.RadioButton("wc2", "1", false, new { @class = "radiocol1 escpl", dindex = "615", dvalue = "64" })
+                @Html.RadioButton("wc2", "0", false, new { @class = "radiocol2 escpl", dindex = "609", dvalue = "64" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("bureau", "Bureau")
+                @Html.RadioButton("bureau", "1", false, new { @class = "radiocol1 escpl", dindex = "612", dvalue = "32" })
+                @Html.RadioButton("bureau", "0", false, new { @class = "radiocol2 escpl", dindex = "606", dvalue = "32" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("gdchamb", "Grande Chambre")
+                @Html.RadioButton("gdchamb", "1", false, new { @class = "radiocol1 escpl", dindex = "614", dvalue = "128" })
+                @Html.RadioButton("gdchamb", "0", false, new { @class = "radiocol2 escpl", dindex = "608", dvalue = "128" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("ptchamb1", "Petite Chambre 1")
+                @Html.RadioButton("ptchamb1", "1", false, new { @class = "radiocol1 escpl", dindex = "614", dvalue = "64" })
+                @Html.RadioButton("ptchamb1", "0", false, new { @class = "radiocol2 escpl", dindex = "608", dvalue = "64" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("ptchamb2", "Petite Chambre 2")
+                @Html.RadioButton("ptchamb2", "1", false, new { @class = "radiocol1 escpl", dindex = "614", dvalue = "32" })
+                @Html.RadioButton("ptchamb2", "0", false, new { @class = "radiocol2 escpl", dindex = "608", dvalue = "32" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("ptchamb3", "Petite Chambre 3")
+                @Html.RadioButton("ptchamb3", "1", false, new { @class = "radiocol1 escpl", dindex = "614", dvalue = "16" })
+                @Html.RadioButton("ptchamb3", "0", false, new { @class = "radiocol2 escpl", dindex = "608", dvalue = "16" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("dressing", "Dressing")
+                @Html.RadioButton("dressing", "1", false, new { @class = "radiocol1 escpl", dindex = "611", dvalue = "8" })
+                @Html.RadioButton("dressing", "0", false, new { @class = "radiocol2 escpl", dindex = "605", dvalue = "8" })
+            </div>
+        </div>
+        <div class='clear large' style='margin-top:15px;margin-bottom:0px'>
+            <div class='radiocoltitle'>Indirects</div>
+        </div>
+        <div class="large" style='margin-top:0px'>
+            <div class='clear large'>
+                <a href='#' id='openeclind' class='radiocol1g on'>On</a>
+                <a href='#' id='closeeclind' class='radiocol2g off'>Off</a>
+            </div>
+            <div class='clear large'>
+                @Html.Label("isalonind", "Salon (indirect 1)")
+                @Html.RadioButton("isalonind", "1", false, new { @class = "radiocol1 escpl", dindex = "611", dvalue = "2" })
+                @Html.RadioButton("isalonind", "0", false, new { @class = "radiocol2 escpl", dindex = "605", dvalue = "2" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("isalonind2", "Salon (indirect 2)")
+                @Html.RadioButton("isalonind2", "1", false, new { @class = "radiocol1 escpl", dindex = "611", dvalue = "4" })
+                @Html.RadioButton("isalonind2", "0", false, new { @class = "radiocol2 escpl", dindex = "605", dvalue = "4" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("icuisine", "Cuisine (plans de travail)")
+                @Html.RadioButton("icuisine", "1", false, new { @class = "radiocol1 escpl", dindex = "615", dvalue = "2" })
+                @Html.RadioButton("icuisine", "0", false, new { @class = "radiocol2 escpl", dindex = "609", dvalue = "2" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("isdb1", "Salle de Bain 1 (miroir)")
+                @Html.RadioButton("isdb1", "1", false, new { @class = "radiocol1 escpl", dindex = "615", dvalue = "4" })
+                @Html.RadioButton("isdb1", "0", false, new { @class = "radiocol2 escpl", dindex = "609", dvalue = "4" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("isdb2", "Salle de Bain 2 (miroir)")
+                @Html.RadioButton("isdb2", "1", false, new { @class = "radiocol1 escpl", dindex = "615", dvalue = "16" })
+                @Html.RadioButton("isdb2", "0", false, new { @class = "radiocol2 escpl", dindex = "609", dvalue = "16" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("igdchamb1", "Grande Chambre (chevet 1)")
+                @Html.RadioButton("igdchamb1", "1", false, new { @class = "radiocol1 escpl", dindex = "613", dvalue = "2" })
+                @Html.RadioButton("igdchamb1", "0", false, new { @class = "radiocol2 escpl", dindex = "607", dvalue = "2" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("igdchamb2", "Grande Chambre (chevet 2)")
+                @Html.RadioButton("igdchamb2", "1", false, new { @class = "radiocol1 escpl", dindex = "613", dvalue = "4" })
+                @Html.RadioButton("igdchamb2", "0", false, new { @class = "radiocol2 escpl", dindex = "607", dvalue = "4" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("iptchamb1", "Petite Chambre 1 (chevet 1)")
+                @Html.RadioButton("iptchamb1", "1", false, new { @class = "radiocol1 escpl", dindex = "613", dvalue = "8" })
+                @Html.RadioButton("iptchamb1", "0", false, new { @class = "radiocol2 escpl", dindex = "607", dvalue = "8" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("iptchamb2", "Petite Chambre 1 (chevet 2)")
+                @Html.RadioButton("iptchamb2", "1", false, new { @class = "radiocol1 escpl", dindex = "613", dvalue = "16" })
+                @Html.RadioButton("iptchamb2", "0", false, new { @class = "radiocol2 escpl", dindex = "607", dvalue = "16" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("iptchamb22", "Petite Chambre 2 (chevet)")
+                @Html.RadioButton("iptchamb22", "1", false, new { @class = "radiocol1 escpl", dindex = "613", dvalue = "32" })
+                @Html.RadioButton("iptchamb22", "0", false, new { @class = "radiocol2 escpl", dindex = "607", dvalue = "32" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("iptchamb3", "Petite Chambre 3 (chevet)")
+                @Html.RadioButton("iptchamb3", "1", false, new { @class = "radiocol1 escpl", dindex = "613", dvalue = "64" })
+                @Html.RadioButton("iptchamb3", "0", false, new { @class = "radiocol2 escpl", dindex = "607", dvalue = "64" })
+            </div>
+            <div class='clear large'>
+                @Html.Label("idressing", "Dressing (placards)")
+                @Html.RadioButton("idressing", "1", false, new { @class = "radiocol1 escpl", dindex = "611", dvalue = "16" })
+                @Html.RadioButton("idressing", "0", false, new { @class = "radiocol2 escpl", dindex = "605", dvalue = "16" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class='esys-zone phonelist' style="width:500px">
+    <h3>Notifications</h3>
+    <ol>
+        <li>@Html.Label("phone", "Numéro où sont envoyés les SMS de notification", new { style = "font-size:14px;text-align:left;margin-bottom:0px;width:100%" })
+    @Html.TextBox("phone", "")</li>
+        <li>@Html.Label("sendmail", "Envoyer email de notification", new { style = "font-size:14px;text-align:left;margin-bottom:10px" })
+    @Html.CheckBox("sendmail", "")</li>
+        <li>@ViewData["NbSMS"] notification(s) restant pour le mois en cours</li>
+    </ol>
+</div>
+    <div class="es-mainaction">
+    <input type="button" id="esys-undo2" style="float:left;margin-left:26px" value="Annulation" class="float-left" />
+    <input type="button" id="esys-valid2" style="float:left" value="Validation" class="float-left" data-waitbox="@ViewBag.WaitBox" />
+    <div class="esys-undoinfo">et déconnexion</div>
+    <div class="esys-undoinfo" style="left:154px">ou rafraîchir</div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

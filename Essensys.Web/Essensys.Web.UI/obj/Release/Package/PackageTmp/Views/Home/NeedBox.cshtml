@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Entrez le code d'activation sur votre boitier";
+    Layout = "~/Views/Shared/BlankLayout.cshtml";
+}
+
+@section Side{
+    <h2>Activez votre boitier</h2>
+    <h4>Renseignez votre code d'activation sur votre boitier.</h4>
+}
+
+<div class='esMessage'>
+    Pour des questions de sécurité vous devez saisir la clé d'activation sur l'écran d'Essensys afin de pouvoir utiliser les fonctions d'accès à distance.<br />
+    Votre clé d'activation :
+</div>
+<div class='esBigdata'>
+@ViewBag.Code
+</div>
+<input type="button" value="Réessayer" onclick="window.location = '/'" />

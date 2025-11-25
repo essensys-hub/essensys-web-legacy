@@ -1,0 +1,125 @@
+﻿@model Essensys.Repository.DTO.EsUser
+@{
+    ViewBag.Title = "Inscription";
+    Layout = "~/Views/Shared/BlankLayout.cshtml";
+}
+
+@section Side{
+    <h2>Inscription</h2>
+    <h4>Renseignez vos coordonnées, identifiant et le numéro de série de votre boitier Essensys pour profiter de la console d'accès à distance.</h4>
+}
+
+@section head{
+    <script language="javascript">
+        $(document).ready(function () {
+            $("form").submit(function () {
+                if ($("form").valid(){
+                    $('section').css('opacity', '0.2');
+                    $('body').append("<div class='es-wait'></div>");
+                    return true;
+                }
+            });
+        });
+    </script>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <fieldset>
+        <legend>Votre compte</legend>
+        <p>Entrez votre adresse email ainsi qu'un mot de passe de votre choix. Un email de vérification vous sera envoyé à cette adresse après création du compte.</p>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Mail)
+                @Html.TextBoxFor(m => m.Mail)
+                @Html.ValidationMessageFor(m => m.Mail)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password, "Mot de passe")
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword, "Confirmez le mot de passe")
+                @Html.PasswordFor(m => m.ConfirmPassword)
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>Votre système Essensys</legend>
+        <p>Entrez le numéro de série de votre boitier Essensys.</p>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.NoSerie, "Numéro de série Essensys")
+                @Html.TextBoxFor(m => m.NoSerie)
+                @Html.ValidationMessageFor(m => m.NoSerie)
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>Vos coordonnées</legend>
+        <p>Entrez votre nom ainsi que les coordonnées de l'adresse à laquelle se trouve le boitier Essensys.</p>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Nom, "Votre nom")
+                @Html.TextBoxFor(m => m.Nom)
+                @Html.ValidationMessageFor(m => m.Nom)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Prenom, "Votre prénom")
+                @Html.TextBoxFor(m => m.Prenom)
+                @Html.ValidationMessageFor(m => m.Prenom)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Adr1, "Adresse 1")
+                @Html.TextBoxFor(m => m.Adr1)
+                @Html.ValidationMessageFor(m => m.Adr1)
+                <i>Rue et numéro, lieu-dit</i>
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Adr2, "Adresse 2")
+                @Html.TextBoxFor(m => m.Adr2)
+                <i>Bâtiment, étage, boite postale</i>
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Cp, "Code postal")
+                @Html.TextBoxFor(m => m.Cp)
+                @Html.ValidationMessageFor(m => m.Cp)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Ville, "Ville")
+                @Html.TextBoxFor(m => m.Ville)
+                @Html.ValidationMessageFor(m => m.Ville)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Phone, "Téléphone")
+                @Html.TextBoxFor(m => m.Phone)
+                @Html.ValidationMessageFor(m => m.Phone)
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>Pour plus de sécurité !</legend>
+        <p>Entrez une question de sécurité et la réponse associée. Cette question nous aidera à vérifier votre identité en cas de perte de mot de passe.</p>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Question, "Question de sécurité")
+                @Html.TextBoxFor(m => m.Question)
+                @Html.ValidationMessageFor(m => m.Question)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Reponse, "Réponse")
+                @Html.TextBoxFor(m => m.Reponse)
+                @Html.ValidationMessageFor(m => m.Reponse)
+            </li>
+        </ol>
+    </fieldset>
+    <input type="submit" value="S'inscrire" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

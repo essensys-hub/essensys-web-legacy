@@ -1,0 +1,166 @@
+﻿@model Essensys.Repository.DTO.EsUser
+@{
+    ViewBag.Title = "Informations personnelles";
+    Layout = "~/Views/Shared/BlankLayout.cshtml";
+}
+
+@section headerattribute{
+    style="width:600px"
+}
+@section sectionattribute{
+    style="width:600px"
+}
+
+@section head{
+    <script src="/Scripts/jquery.colorbox.js"></script>
+    <script src="/Scripts/essensys.js"></script>
+    <link href="/Content/colorbox.css" rel="stylesheet"/>
+    <script>
+        $(document).ready(function () {
+            $("#Password2").val("");
+            $("#Question").val("");
+            $("#Reponse").val("");
+            $("#Reponse2").val("");
+            $("#qsrep").bind("change", function () {
+                if ($(this).val() != ""){
+                            $("#Question").enable();
+                            $("#Reponse").enable();
+                            $("#Reponse2").enable();
+                        }
+                        else {
+                            $("#Question").disable();
+                            $("#Reponse").disable();
+                            $("#Reponse2").disable();
+                            $("#Question").val("");
+                            $("#Reponse").val("");
+                            $("#Reponse2").val("");
+                        }
+            });
+        });
+    </script>
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    @Html.Hidden("Id", Model.Id)
+    <fieldset>
+        <legend>Votre clef d'activation</legend>
+        <p>Cette clef doit être saisie sur l'écran de contrôle dans le menu de réglage "Accès à distance".
+Tant que cette clef n'aura pas été saisie, vous ne pourrez pas accéder aux fonctions d'accès à
+distance. Si vous voulez la renouveler, vous devez clôturer votre compte en bas de page et en
+créer un nouveau.</p>
+        <ol>
+            <li><label>Clef</label>
+            @ViewBag.Code
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>Votre email</legend>
+        <p>L'adresse email de votre compte est votre identifiant principal et ne peut pas être modifiée. Si
+toutefois vous changez de fournisseur de messagerie, vous devez clôturer votre compte en bas
+de page et en créer un nouveau.</p>
+        <ol>
+            <li><label>Mail</label>
+            @Model.Mail
+            </li>
+        </ol>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Vos coordonnées</legend>
+        <p>Entrez votre nom ainsi que les coordonnées de l'adresse à laquelle se trouve le boitier Essensys.</p>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Nom, "Votre nom")
+                @Html.TextBoxFor(m => m.Nom)
+                @Html.ValidationMessageFor(m => m.Nom)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Prenom, "Votre prénom")
+                @Html.TextBoxFor(m => m.Prenom)
+                @Html.ValidationMessageFor(m => m.Prenom)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Adr1, "Adresse")
+                @Html.TextBoxFor(m => m.Adr1)
+                @Html.ValidationMessageFor(m => m.Adr1)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Adr2, "Complément d'adresse")
+                @Html.TextBoxFor(m => m.Adr2)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Cp, "Code postal")
+                @Html.TextBoxFor(m => m.Cp)
+                @Html.ValidationMessageFor(m => m.Cp)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Ville, "Ville")
+                @Html.TextBoxFor(m => m.Ville)
+                @Html.ValidationMessageFor(m => m.Ville)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Phone, "Téléphone")
+                @Html.TextBoxFor(m => m.Phone)
+                @Html.ValidationMessageFor(m => m.Phone)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.SendInfos, "J'accepte de recevoir des informations complémentaires", new { style = "width:500px;margin-left:15px;margin-right:5px", id = "SendInfosLabel" })
+                @Html.CheckBoxFor(m => m.SendInfos, new { style = "margin-left: 0px;" })
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>Votre mot de passe</legend>
+        <p>Entrez votre mot de passe actuel puis saisissez à deux reprises votre nouveau mot de passe.</p>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Password2, "Mot de passe actuel")
+                @Html.PasswordFor(m => m.Password2, new { autocomplete = "off" })
+                @Html.ValidationMessageFor(m => m.Password2)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.NewPassword, "Nouveau mot de passe")
+                @Html.PasswordFor(m => m.NewPassword)
+                @Html.ValidationMessageFor(m => m.NewPassword)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmNewPassword, "Confirmez le nouveau mot de passe")
+                @Html.PasswordFor(m => m.ConfirmNewPassword)
+                @Html.ValidationMessageFor(m => m.ConfirmNewPassword)
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>Pour plus de sécurité !</legend>
+        <p>Cette sécurité supplémentaire vous sera demandée systématiquement pour pouvoir agir à distance sur votre
+système d'alarme. Entrez tout d'abord la réponse actuelle à la question de sécurité pour que les modifications
+soient prises en compte.</p>
+        <ol>
+            <li><label>Question actuelle</label>@Model.Question</li>
+            <li><label>Réponse actuelle</label><input type="text" value="" style="margin-left:3px" name="qsrep" id="qsrep" />
+            @Html.ValidationMessageFor(m => m.Pkey)
+            </li>
+            <li>@Html.LabelFor(m => m.Question, "Nouvelle question de sécurité")
+                @Html.TextBoxFor(m => m.Question, new { disabled = "disabled" })
+                @Html.ValidationMessageFor(m => m.Question)</li>
+            <li>@Html.LabelFor(m => m.Reponse, "Nouvelle réponse")
+                @Html.TextBoxFor(m => m.Reponse, new { disabled = "disabled" })
+                @Html.ValidationMessageFor(m => m.Reponse)</li>
+            <li>@Html.LabelFor(m => m.Reponse2, "Confirmez la nouvelle réponse")
+                @Html.TextBoxFor(m => m.Reponse2, new { disabled = "disabled" })
+                @Html.ValidationMessageFor(m => m.Reponse2)</li>
+        </ol>
+    </fieldset>
+    <input type="submit" value="Enregistrer" style="margin-right: 50px"/>
+    <input type="button" value="Annuler" id="esys-infosundo" onclick="window.location='/'" />
+    <a href="#" id="esys-close">Cloturer le compte</a>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

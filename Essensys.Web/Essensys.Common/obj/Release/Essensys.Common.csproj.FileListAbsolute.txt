@@ -1,0 +1,6 @@
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\bin\Release\Essensys.Common.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\bin\Release\Essensys.Common.pdb
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\bin\Release\log4net.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\obj\Release\ResolveAssemblyReference.cache
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\obj\Release\Essensys.Common.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\obj\Release\Essensys.Common.pdb

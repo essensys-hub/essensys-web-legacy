@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Se connecter";
+    Layout = "~/Views/Shared/BlankLayout.cshtml";
+}
+
+@section headerattribute{
+    class="loginform"
+}
+@section sectionattribute{
+    class="loginform"
+}
+
+@section head{
+
+}
+<div class='es-login'>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <ol>
+                <li>
+                    <label for="Mail">Adresse email</label>
+                    <input data-val="true" data-val-regex="Veuillez entrer une adresse email valide" data-val-regex-pattern="^[a-z0-9_\+-]+(\.[a-z0-9_\+-]+)*@@[a-z0-9-]+(\.[a-z0-9]+)*\.([a-z]{2,4})$" data-val-required="Veuillez entrez votre adresse EMail" id="Mail" name="Mail" type="text" value="" class="input-validation-error">
+                    <span class="field-validation-error" data-valmsg-for="Mail" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label for="Password">Mot de passe</label>
+                    <input data-val="true" data-val-required="Veuillez entrez le mot de passe désiré" id="Password" name="Password" type="password">
+                    <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                </li>
+            </ol>
+        </fieldset>
+        <input type="submit" value="Se connecter" class="bluebutton" />
+    }
+</div>
+<p style="text-align:left;margin-left:10px;font-size:11px">Mot de passe oublié ? @Html.ActionLink("Cliquez ici !", "LostPassword", "Account")</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

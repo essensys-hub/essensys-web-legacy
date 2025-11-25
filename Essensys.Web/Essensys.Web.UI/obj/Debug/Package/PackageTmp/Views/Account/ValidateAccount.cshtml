@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Validation de votre inscription";
+    Layout = "~/Views/Shared/BlankLayout.cshtml";
+}
+@section headerattribute{
+}
+@section sectionattribute{
+}
+@section head{
+
+    <link href="/Content/colorbox.css" rel="stylesheet"/>
+    <script src="/Scripts/jquery-ui-1.8.20.js"></script>
+    <link href="/Content/jqueryui/jquery-ui.css" rel="stylesheet"/>
+    <script src="/Scripts/jquery.colorbox.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#testbox").bind("click", function () {
+                $.colorbox({
+                    html: "<div class='esys-wait' style='width:350px'>Validation de votre clé en cours.<br/>Veuillez patienter</div>",
+                    overlayClose: false,
+                    escKey: false,
+                    width: "400px",
+                    height: "400px"
+                });
+                $('input').attr('disabled', 'disabled');
+                $.post("/Home/WaitBoxAn", function (data) {
+                    if (!data.success) {
+                        $('.esys-wait').html("Votre boitier Essensys ne répond pas. Cela peut être du à une mauvaise saisie de la clef d'activation sur l'écran de contrôle Essensys.<br/><div style='text-align:center'><a href='#' class='try'>Réessayer</a><br/><a href='/Account/UpdateMyInfos' style='margin-top:0px'>Accédez à vos informations personnelles</a></div>");
+                        $('.try').bind('click', function () {
+                            $("#testbox").trigger("click");
+                        });
+                        $('.esys-wait').css('background', 'none');
+                    }
+                    else {
+                        window.location = "/";
+                    }
+                });
+            });
+        });
+    </script>
+}
+@if (ViewBag.Exists)
+{
+    <div class='esMessage'>
+        Afin de pouvoir accéder à votre compte personnel, vous devez saisir la clef d'activation
+        suivante sur l'écran de contrôle Essensys dans le menu de réglage "Accès à distance".
+    </div>
+    <div style="text-align: center">
+        <img src="/Content/images/accesadistance.png" style="width: 280px" />
+        <br />
+    </div>
+    <div class='esBigdata'>
+        @ViewBag.Code
+    </div>
+    <div style="text-align: center">
+        <input type="button" value="J'ai saisi la clef" id="testbox" class="bluebutton" style="text-align: center;
+            float: none; margin-bottom: 10px;" />
+    </div>
+}
+else
+{
+    <div class='esMessage'>
+        Votre lien ne semble pas contenir les bonnes informations. Veuillez contacter notre
+        service client.
+    </div>
+}

@@ -1,0 +1,209 @@
+﻿@model Essensys.Repository.DTO.EsUser
+@{
+    ViewBag.Title = "Inscription";
+    Layout = "~/Views/Shared/BlankLayout.cshtml";
+}
+
+@section headerattribute{
+    
+}
+@section sectionattribute{
+    
+}
+
+@section head{
+    <style>
+    .noseriezone
+    {
+        width:47px !important;
+    }
+    </style>
+    <script language="javascript">
+        function disableCtrlKeyCombination(e) {
+            //list all CTRL + key combinations you want to disable
+            var forbiddenKeys = new Array('a', 'c', 'x', 'v');
+            var key;
+            var isCtrl;
+            if (window.event) {
+                key = window.event.keyCode;     //IE
+                if (window.event.ctrlKey)
+                    isCtrl = true;
+                else
+                    isCtrl = false;
+            }
+            else {
+                key = e.which;     //firefox
+                if (e.ctrlKey)
+                    isCtrl = true;
+                else
+                    isCtrl = false;
+            }
+            //if ctrl is pressed check if other key is in forbidenKeys array
+            if (isCtrl) {
+                for (i = 0; i < forbiddenKeys.length; i++) {
+                    //case-insensitive comparation
+                    if (forbiddenKeys[i].toLowerCase() == String.fromCharCode(key).toLowerCase()) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        $(document).ready(function () {
+            $("#ConfirmPassword").bind("keypress", function (event) { return disableCtrlKeyCombination(event); });
+            $("#ConfirmPassword").bind("keydown", function (event) { return disableCtrlKeyCombination(event); });
+
+            $("form").submit(function () {
+                if ($("#noserie1").val() == "") {
+                    $(".noseriezone").addClass("input-validation-error");
+                    $("#NoSerie").next().html("Veuillez entrer la clef d'activation de votre Essensys.");
+                    $("#NoSerie").next().removeClass("field-validation-valid");
+                    $("#NoSerie").next().addClass("field-validation-error");
+                    $("#noserie1").focus();
+                    return false;
+                }
+                if ($("form").valid()) {
+                    $('section').css('opacity', '0.2');
+                    $('body').append("<div class='es-wait'></div>");
+                    return true;
+                }
+            });
+            $("#noserie1").keypress(function () {
+                var l = $(this).val().length;
+                if (l == 5)
+                    $("#noserie2").focus();
+            });
+            $("#noserie2").keypress(function () {
+                var l = $(this).val().length;
+                if (l == 5)
+                    $("#noserie3").focus();
+            });
+            $("#noserie3").keypress(function () {
+                var l = $(this).val().length;
+                if (l == 5)
+                    $("#noserie4").focus();
+            });
+            $("#noserie4").keypress(function () {
+                var l = $(this).val().length;
+                if (l == 5)
+                    $("#noserie5").focus();
+            });
+            $(".noseriezone").change(function () {
+                $("#NoSerie").val($("#noserie1").val() + "-" + $("#noserie2").val() + "-" + $("#noserie3").val() + "-" + $("#noserie4").val() + "-" + $("#noserie5").val());
+                if ($("#NoSerie").val().length > 29)
+                    $("#NoSerie").focusout();
+            });
+            //            $("#NoSerie").keypress(function () {
+            //                var l = $(this).val().length;
+            //                if (l == 5 || l == 11 || l == 17 || l == 23)
+            //                    $(this).val($(this).val() + '-');
+            //                if (l > 29)
+            //                    $(this).val($(this).val().substr(0, 28));
+            //            });
+        });
+    </script>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <fieldset>
+        <legend>Votre compte</legend>
+        <p>Entrez votre adresse email ainsi qu'un mot de passe de votre choix. <u>Attention : saisissez une adresse valide car un email de vérification vous sera envoyé à cette adresse pour finaliser la création du compte.</u></p>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Mail)
+                @Html.TextBoxFor(m => m.Mail)
+                @Html.ValidationMessageFor(m => m.Mail)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ReMail, "Confirmez le mail")
+                @Html.TextBoxFor(m => m.ReMail)
+                @Html.ValidationMessageFor(m => m.ReMail)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password, "Mot de passe")
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword, "Confirmez le mot de passe")
+                @Html.PasswordFor(m => m.ConfirmPassword)
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>Votre système Essensys</legend>
+        <p>Entrez la clef produit de votre Essensys. Elle se trouve en haut à gauche de la face avant du Tableau Domotique.</p>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.NoSerie, "Clef")
+                <input type="text" maxlength="5" style="min-width:55px" id="noserie1" class="noseriezone" />&nbsp;-&nbsp;
+                <input type="text" maxlength="5" style="min-width:55px" id="noserie2" class="noseriezone" />&nbsp;-&nbsp;
+                <input type="text" maxlength="5" style="min-width:55px" id="noserie3" class="noseriezone" />&nbsp;-&nbsp;
+                <input type="text" maxlength="5" style="min-width:55px" id="noserie4" class="noseriezone" />&nbsp;-&nbsp;
+                <input type="text" maxlength="5" style="min-width:55px" id="noserie5" class="noseriezone" />
+                @Html.TextBoxFor(m => m.NoSerie, new { style = "display:none" })
+                @Html.ValidationMessageFor(m => m.NoSerie)
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>Vos coordonnées</legend>
+        <p>Entrez votre nom ainsi que les coordonnées de l'adresse à laquelle se trouve le boitier Essensys.</p>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Nom, "Votre nom")
+                @Html.TextBoxFor(m => m.Nom)
+                @Html.ValidationMessageFor(m => m.Nom)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Prenom, "Votre prénom")
+                @Html.TextBoxFor(m => m.Prenom)
+                @Html.ValidationMessageFor(m => m.Prenom)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Adr1, "Adresse")
+                @Html.TextBoxFor(m => m.Adr1)
+                @Html.ValidationMessageFor(m => m.Adr1)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Adr2, "Complément d'adresse")
+                @Html.TextBoxFor(m => m.Adr2)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Cp, "Code postal")
+                @Html.TextBoxFor(m => m.Cp)
+                @Html.ValidationMessageFor(m => m.Cp)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Ville, "Ville")
+                @Html.TextBoxFor(m => m.Ville)
+                @Html.ValidationMessageFor(m => m.Ville)
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>Pour plus de sécurité !</legend>
+        <p>Entrez une question de sécurité et la réponse associée. Cette sécurité supplémentaire vous sera demandée systématiquement pour pouvoir agir à distance sur votre système d'alarme.</p>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Question, "Question de sécurité")
+                @Html.TextBoxFor(m => m.Question)
+                @Html.ValidationMessageFor(m => m.Question)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Reponse, "Réponse")
+                @Html.TextBoxFor(m => m.Reponse)
+                @Html.ValidationMessageFor(m => m.Reponse)
+            </li>
+        </ol>
+    </fieldset>
+    <input type="submit" style="float:none;margin-left:470px" class="bluebutton registerbutton" value="S'inscrire" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

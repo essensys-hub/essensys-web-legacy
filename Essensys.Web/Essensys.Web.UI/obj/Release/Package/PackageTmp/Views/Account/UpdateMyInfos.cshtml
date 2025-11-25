@@ -1,0 +1,103 @@
+﻿@model Essensys.Repository.DTO.EsUser
+@{
+    ViewBag.Title = "Informations personnelles";
+    Layout = "~/Views/Shared/BlankLayout.cshtml";
+}
+
+@section Side{
+    <h2>Informations personnelles</h2>
+    <h4>Modifiez vos coordonnées sur cette page.</h4>
+}
+
+@section head{
+    <script src="/Scripts/jquery.colorbox.js"></script>
+    <script src="/Scripts/essensys.js"></script>
+    <link href="/Content/colorbox.css" rel="stylesheet"/>
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    @Html.Hidden("Id", Model.Id)
+    <fieldset>
+        <legend>Vos coordonnées</legend>
+        <p>Entrez votre nom ainsi que les coordonnées de l'adresse à laquelle se trouve le boitier Essensys.</p>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Nom, "Votre nom")
+                @Html.TextBoxFor(m => m.Nom)
+                @Html.ValidationMessageFor(m => m.Nom)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Prenom, "Votre prénom")
+                @Html.TextBoxFor(m => m.Prenom)
+                @Html.ValidationMessageFor(m => m.Prenom)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Mail2, "Votre Email")
+                @Html.TextBoxFor(m => m.Mail2)
+                @Html.ValidationMessageFor(m => m.Mail2)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Adr1, "Adresse 1")
+                @Html.TextBoxFor(m => m.Adr1)
+                @Html.ValidationMessageFor(m => m.Adr1)
+                <i>Rue et numéro, lieu-dit</i>
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Adr2, "Adresse 2")
+                @Html.TextBoxFor(m => m.Adr2)
+                <i>Bâtiment, étage, boite postale</i>
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Cp, "Code postal")
+                @Html.TextBoxFor(m => m.Cp)
+                @Html.ValidationMessageFor(m => m.Cp)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Ville, "Ville")
+                @Html.TextBoxFor(m => m.Ville)
+                @Html.ValidationMessageFor(m => m.Ville)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Phone, "Téléphone")
+                @Html.TextBoxFor(m => m.Phone)
+                @Html.ValidationMessageFor(m => m.Phone)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.SendInfos, "J'accepte de recevoir des informations complémentaires", new { style = "width:450px", id = "SendInfosLabel"})
+                @Html.CheckBoxFor(m => m.SendInfos)
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>Votre mot de passe</legend>
+        <p>Entrez votre mot de passe actuel puis saisissez à deux reprises votre nouveau mot de passe.</p>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Password2, "Mot de passe actuel")
+                @Html.PasswordFor(m => m.Password2)
+                @Html.ValidationMessageFor(m => m.Password2)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.NewPassword, "Nouveau mot de passe")
+                @Html.PasswordFor(m => m.NewPassword)
+                @Html.ValidationMessageFor(m => m.NewPassword)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmNewPassword, "Confirmez le nouveau mot de passe")
+                @Html.PasswordFor(m => m.ConfirmNewPassword)
+                @Html.ValidationMessageFor(m => m.ConfirmNewPassword)
+            </li>
+        </ol>
+    </fieldset>
+    <input type="submit" value="Enregistrer" />
+    <input type="button" value="Annuler" onclick="window.location='/'" />
+    <input type="button" id="esys-close" value="Cloturer le compte" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

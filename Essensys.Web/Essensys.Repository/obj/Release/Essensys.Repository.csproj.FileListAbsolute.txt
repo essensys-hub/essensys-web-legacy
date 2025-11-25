@@ -1,0 +1,16 @@
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\obj\Release\ResolveAssemblyReference.cache
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\Essensys.Repository.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\Essensys.Repository.pdb
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\Essensys.Common.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\FluentNHibernate.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\NHibernate.Caches.SysCache.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\NHibernate.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\log4net.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\Essensys.Common.pdb
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\obj\Release\Essensys.Repository.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\obj\Release\Essensys.Repository.pdb
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\Antlr3.Runtime.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\Iesi.Collections.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\LinFu.DynamicProxy.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\NHibernate.ByteCode.LinFu.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Repository\bin\Release\Remotion.Data.Linq.dll

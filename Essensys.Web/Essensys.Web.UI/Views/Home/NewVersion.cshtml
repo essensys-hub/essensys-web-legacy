@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "NewVersion";
+    Layout = "~/Views/Shared/FullBlankLayout.cshtml";
+}
+
+<h2>Nouvelle version</h2>
+<form method="post" enctype="multipart/form-data">
+    <div style="background-color:#FFFFCC;padding:5px;border:solid 1px #990000">Version actuelle : @ViewData["vs"]</div>
+    <input type="hidden" name="v" id="v" value="@ViewData["vs"]" />
+    <div>
+        <label for="filev"><b>Fichier :</b></label>
+        <input type="file" name="filev" id="filev" />
+    </div>
+    <div>
+        <label for="descriptif"><b>Descriptif :</b></label>
+        <textarea name="descriptif" id="descriptif" cols="40" rows="10"></textarea>
+    </div>
+    <input type="submit" value="Télécharger" />
+</form>

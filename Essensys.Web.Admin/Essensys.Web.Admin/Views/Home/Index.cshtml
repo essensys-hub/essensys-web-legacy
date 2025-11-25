@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Accueil";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+<ol>
+    <li><a href="Admin/GenerateKey">Génération de clés</a></li>
+    <li><a href="Admin/NewVersion">Téléchargement de version</a></li>
+</ol>

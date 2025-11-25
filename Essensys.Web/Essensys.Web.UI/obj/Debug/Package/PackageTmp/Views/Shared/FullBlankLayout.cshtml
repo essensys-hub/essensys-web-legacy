@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <title>monEssensys - @ViewBag.Title</title>
+        @Styles.Render("~/Content/Essensys.css")
+        @Scripts.Render("~/bundles/modernizr")
+        
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+
+        @RenderSection("head", required: false)
+</head>
+<body style="background-color:#FFFFFF">
+    @RenderBody()
+</body>
+</html>

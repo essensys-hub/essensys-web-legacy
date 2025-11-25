@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Génération de clé";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+<form method="post">
+    <div>
+        <label for="nb">Nombre de clés (1000 maximum) :</label>
+        <input type="number" style="width:80px" min="1" max="1000" id="nb" name="nb" />
+    </div>
+    <div>
+        <label for="pref">Préfixe :</label>
+        <input type="text" maxlength="8" style="width:200px" id="pref" name="pref" />
+    </div>
+    <input type="submit" value="Générer les clés" />
+    <div style="padding:5px;border:solid 1px red;margin:5px">Attention ! Le temps de calcul peut être très long pour un gros volume de clés.</div>
+</form>

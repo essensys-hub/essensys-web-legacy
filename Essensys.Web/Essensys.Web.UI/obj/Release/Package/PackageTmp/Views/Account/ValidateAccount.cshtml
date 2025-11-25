@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Validation de votre inscription";
+    Layout = "~/Views/Shared/BlankLayout.cshtml";
+}
+
+@section Side{
+    <h2>Inscription validée</h2>
+    <h4>Votre compte est désormais actif. N'oubliez pas de renseigner votre code sur votre terminal</h4>
+}
+@section head{
+
+}
+
+@if (ViewBag.Exists)
+{
+    <div class='esMessage'>
+    Votre compte est désormais validé. Pour valider le fonctionnement de la console à distance, renseignez le code suivant sur votre terminal :
+    </div>
+    <div class='esBigdata'>
+    @ViewBag.Code
+    </div>
+}
+else
+{
+    <div class='esMessage'>
+    Votre lien ne semble pas contenir les bonnes informations. Veuillez contacter notre service client.
+    </div>
+}

@@ -1,0 +1,7 @@
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\obj\Debug\Essensys.Common.csprojResolveAssemblyReference.cache
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\bin\Debug\Essensys.Common.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\bin\Debug\Essensys.Common.pdb
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\bin\Debug\AWSSDK.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\bin\Debug\log4net.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\obj\Debug\Essensys.Common.dll
+C:\EBAZTEN\TFS\EBZCLIENTS\TRONC\Essensys.Web\Essensys.Common\obj\Debug\Essensys.Common.pdb
