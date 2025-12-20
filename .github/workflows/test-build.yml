@@ -1,0 +1,58 @@
+name: Test Documentation Build
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify requirements.txt exists
+        run: |
+          if [ ! -f requirements.txt ]; then
+            echo "❌ requirements.txt not found!"
+            exit 1
+          else
+            echo "✅ requirements.txt found"
+            cat requirements.txt
+          fi
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Test MkDocs build
+        run: |
+          echo "🔧 Testing MkDocs configuration..."
+          mkdocs --version
+          echo "📚 Building documentation..."
+          mkdocs build --strict --verbose
+          echo "✅ Documentation built successfully!"
+
+      - name: Verify build output
+        run: |
+          if [ ! -d site ]; then
+            echo "❌ Build output directory 'site' not found!"
+            exit 1
+          fi
+          
+          if [ ! -f site/index.html ]; then
+            echo "❌ index.html not found in build output!"
+            exit 1
+          fi
+          
+          echo "✅ Build verification passed!"
+          echo "📊 Build statistics:"
+          find site -name "*.html" | wc -l | xargs echo "HTML files:"
+          du -sh site | cut -f1 | xargs echo "Total size:"
