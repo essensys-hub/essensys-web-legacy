@@ -1,0 +1,174 @@
+# Configuration MkDocs pour la Documentation Essensys Migration
+site_name: Plan de Migration Essensys
+site_description: Documentation complète du plan de migration de l'application domotique Essensys vers React/Node.js
+site_author: Équipe Migration Essensys
+site_url: https://votre-username.github.io/essensys-migration/
+
+# Repository
+repo_name: essensys-migration
+repo_url: https://github.com/votre-username/essensys-migration
+edit_uri: edit/main/docs/
+
+# Copyright
+copyright: Copyright &copy; 2024 Essensys Migration Team
+
+# Configuration
+theme:
+  name: material
+  language: fr
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.indexes
+    - toc.follow
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - search.share
+    - header.autohide
+    - content.code.copy
+    - content.code.annotate
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+
+# Plugins
+plugins:
+  - search:
+      lang: fr
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: date
+  - minify:
+      minify_html: true
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      title: Sur cette page
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: votre-username
+      repo: essensys-migration
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Navigation
+nav:
+  - Accueil: README.md
+  
+  - 🎯 Validation & Résumés:
+    - Résumé Exécutif: resume-executif-validation.md
+    - Validation Finale: validation-finale-plan-migration.md
+    - Checklist Validation: checklist-validation-livrables.md
+  
+  - 🔍 Analyse Legacy:
+    - Analyse Système Legacy: legacy-system-analysis.md
+    - Résumé Analyse: legacy-analysis-summary.md
+    - Tests Caractérisation: legacy-characterization-tests.md
+  
+  - 🏗️ Architecture Moderne:
+    - Frontend React: architecture-moderne-frontend.md
+    - Backend Node.js: architecture-moderne-backend.md
+    - Base de Données: schema-base-donnees-moderne.md
+    - Infrastructure: infrastructure-deploiement.md
+    - Sécurité: securite-authentification.md
+  
+  - 📊 Planification:
+    - Planning & Estimation: planification-estimation-projet.md
+    - Migration Données: strategie-migration-donnees.md
+    - Analyse ROI: analyse-cout-benefice-roi.md
+  
+  - 🛠️ Développement:
+    - Standards: standards-developpement.md
+    - Stack Technique: stack-technique-outils.md
+    - Exemples Code: exemples-implementation.md
+    - Spécifications API: specifications-api.md
+  
+  - 🧪 Tests & Validation:
+    - Stratégie Tests: strategie-tests.md
+    - Plan Validation: plan-tests-validation.md
+    - Résultats PBT: pbt-test-results.md
+  
+  - 👥 Utilisateurs:
+    - Changements Interface: documentation-changements-interface.md
+    - Plan Formation: plan-formation-utilisateurs.md
+    - Période Transition: strategie-periode-transition.md
+    - Bénéfices Système: benefices-nouveau-systeme.md
+    - Support Utilisateur: ressources-support-utilisateur.md
+  
+  - 📝 Annexes:
+    - Prompts Développement: prompts.md
+
+# Extra
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/votre-username/essensys-migration
+  version:
+    provider: mike
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX  # Remplacez par votre ID Google Analytics
+
+# CSS personnalisé
+extra_css:
+  - stylesheets/extra.css
+
+# JavaScript personnalisé
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

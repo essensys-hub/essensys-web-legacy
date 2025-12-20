@@ -1,0 +1,188 @@
+/* Styles personnalisés pour la documentation Essensys Migration */
+
+/* Variables CSS personnalisées */
+:root {
+  --essensys-primary: #1976d2;
+  --essensys-secondary: #424242;
+  --essensys-success: #4caf50;
+  --essensys-warning: #ff9800;
+  --essensys-error: #f44336;
+  --essensys-info: #2196f3;
+}
+
+/* Amélioration des badges de statut */
+.md-typeset .admonition.success,
+.md-typeset details.success {
+  border-color: var(--essensys-success);
+}
+
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+  border-color: var(--essensys-warning);
+}
+
+.md-typeset .admonition.error,
+.md-typeset details.error {
+  border-color: var(--essensys-error);
+}
+
+/* Style pour les tableaux de statut */
+.md-typeset table th {
+  background-color: var(--md-primary-fg-color--light);
+  color: var(--md-primary-bg-color);
+  font-weight: 600;
+}
+
+.md-typeset table td {
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+/* Badges de statut personnalisés */
+.status-badge {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.status-complete {
+  background-color: var(--essensys-success);
+  color: white;
+}
+
+.status-warning {
+  background-color: var(--essensys-warning);
+  color: white;
+}
+
+.status-error {
+  background-color: var(--essensys-error);
+  color: white;
+}
+
+.status-info {
+  background-color: var(--essensys-info);
+  color: white;
+}
+
+/* Amélioration des liens de navigation */
+.md-nav__item--active > .md-nav__link {
+  color: var(--essensys-primary);
+  font-weight: 600;
+}
+
+/* Style pour les métriques */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.metric-card {
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--essensys-primary);
+  display: block;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: var(--md-default-fg-color--light);
+  margin-top: 0.5rem;
+}
+
+/* Amélioration des codes blocks */
+.md-typeset .highlight .filename {
+  background-color: var(--md-code-bg-color);
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  color: var(--md-default-fg-color--light);
+  font-size: 0.85em;
+  padding: 0.5rem 1rem;
+  margin: 0;
+}
+
+/* Style pour les diagrammes Mermaid */
+.mermaid {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+/* Responsive design amélioré */
+@media screen and (max-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .md-typeset table {
+    font-size: 0.875rem;
+  }
+}
+
+/* Animation pour les éléments interactifs */
+.md-nav__link:hover,
+.md-footer__link:hover {
+  transition: color 0.2s ease-in-out;
+}
+
+/* Style pour les alertes importantes */
+.md-typeset .admonition.important {
+  border-color: var(--essensys-primary);
+}
+
+.md-typeset .admonition.important > .admonition-title {
+  background-color: var(--essensys-primary);
+  color: white;
+}
+
+/* Amélioration de la lisibilité */
+.md-typeset {
+  line-height: 1.6;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Style pour les listes de tâches */
+.md-typeset .task-list-item {
+  list-style: none;
+}
+
+.md-typeset .task-list-item input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+/* Footer personnalisé */
+.md-footer {
+  background-color: var(--essensys-secondary);
+}
+
+/* Print styles */
+@media print {
+  .md-header,
+  .md-sidebar,
+  .md-footer {
+    display: none !important;
+  }
+  
+  .md-content {
+    margin: 0 !important;
+  }
+}
