@@ -458,7 +458,7 @@ web.*.config
 # Logs spécifiques Essensys
 Essensys.Web/Essensys.Web.UI/log/
 *.log
-*.txt
+Essensys.Web/Essensys.Web.UI/log/*.txt
 
 # Packages NuGet (déjà dans packages/)
 packages/
