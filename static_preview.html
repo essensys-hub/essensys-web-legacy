@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="./Essensys.Web/Essensys.Web.UI/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <title>monEssensys - Pilotage de votre boitier</title>
+    
+    <!-- Styles -->
+    <link href="./Essensys.Web/Essensys.Web.UI/Content/Essensys.css" rel="stylesheet"/>
+    <link href="./Essensys.Web/Essensys.Web.UI/Content/colorbox.css" rel="stylesheet"/>
+    <link href="./Essensys.Web/Essensys.Web.UI/Content/jqueryui/jquery-ui.css" rel="stylesheet"/>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script> <!-- Mocking Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script> <!-- Mocking Bundle -->
+    
+    <script src="./Essensys.Web/Essensys.Web.UI/Scripts/jquery-ui-1.8.20.js"></script>
+    <script src="./Essensys.Web/Essensys.Web.UI/Scripts/jquery.colorbox.js"></script>
+    <script src="./Essensys.Web/Essensys.Web.UI/Scripts/essensys.js"></script>
+</head>
+<body>
+    <div class='es-blk-main'>
+        <header>
+            <img src="./Essensys.Web/Essensys.Web.UI/Content/images/logosml.png" width="132px" height="40px" alt="Essensys" title="Essensys" />
+        </header>
+        <section>
+            <ul class='es-option'>
+                <li><a href='#'>Modifier mes informations personnelles</a></li>                    
+            </ul>
+            
+            <!-- Body Content -->
+            <form action="#" method="post">
+                <input type="hidden" name="__RequestVerificationToken" value="mock-token" />
+                
+                <div class="es-mainaction">
+                    <input type="button" id="esys-undo" style="float:left;margin-left:26px" value="Annulation" class="float-left" />
+                    <input type="button" id="esys-valid" style="float:left" value="Validation" class="float-left" data-waitbox="Veuillez patienter..." />
+                    <div class="esys-undoinfotop">et déconnexion</div>
+                    <div class="esys-undoinfotop" style="left:154px">ou rafraîchir</div>
+                </div>
+                
+                <div class='esys-zone' id="alarmecontainer" style="width:400px">
+                    <span>Changement de paramètre à valider</span>
+                    <div class='esys-validinfo'>
+                        <h3>Alarme</h3>
+                        <div class="float-left alarmeor" style="width:20px;display:none">
+                            ou
+                        </div>
+                        <div class="" id="alcodecont" style='width:400px'>
+                            <div class='clear' style='width:380px;display:none'>
+                                <label for="codealarme" style="display:block;float:none;width:200px;text-align:left">Code de l'alarme</label>
+                                <input type="text" id="codealarme" name="codealarme" size="10" maxlength="4" style="width:auto;float:left" />
+                            </div>
+                            <div class='clear' style='width:400px;margin-top:20px'>
+                                <label for="question" style="display:block;float:none;width:200px;text-align:left">Question Secrète Mock?</label>
+                                <input type="text" id="question" name="question" size="40" maxlength="255" style="width:auto;float:left;margin-top:10px" />
+                                <input type="button" value="Vérifier" />
+                            </div>
+                        </div>
+                        <div class='clear alarmeoption disabled'>
+                            <label for="alarmeon">ON</label>
+                            <input type="radio" name="alarme" id="alarme_on" value="on" disabled />
+                        </div>
+                        <div class='clear alarmeoption disabled'>
+                            <label for="alarmeoff">OFF</label>
+                            <input type="radio" name="alarme" id="alarme_off" value="off" checked disabled />
+                        </div>
+                    </div>
+                </div>
+
+                <div class='esys-zone' id="chauffagezjcontainer">
+                    <span>Changement de paramètre à valider</span>
+                    <div class='esys-validinfo'>
+                        <h3>Chauffage Zone Jour</h3>
+                        <div class='clear'>
+                            <label for="chauffagezj_1">Automatique (planning)</label>
+                            <input type="radio" name="chauffagezj" id="chauffagezj_1" value="1" />
+                        </div>
+                        <div class='clear'>
+                            <label for="chauffagezj_32">Anticipé</label>
+                            <input type="radio" name="chauffagezj" id="chauffagezj_32" value="32" />
+                        </div>
+                        <div class='clear'>
+                            <label for="chauffagezj_17">Forçage confort</label>
+                            <input type="radio" name="chauffagezj" id="chauffagezj_17" value="17" />
+                        </div>
+                        <div class='clear'>
+                            <label for="chauffagezj_18">Forçage éco</label>
+                            <input type="radio" name="chauffagezj" id="chauffagezj_18" value="18" />
+                        </div>
+                        <div class='clear'>
+                            <label for="chauffagezj_19">Forçage éco+</label>
+                            <input type="radio" name="chauffagezj" id="chauffagezj_19" value="19" />
+                        </div>
+                        <div class='clear'>
+                            <label for="chauffagezj_20">Forçage éco++</label>
+                            <input type="radio" name="chauffagezj" id="chauffagezj_20" value="20" />
+                        </div>
+                        <div class='clear'>
+                            <label for="chauffagezj_21">Forçage hors gel</label>
+                            <input type="radio" name="chauffagezj" id="chauffagezj_21" value="21" />
+                        </div>
+                        <div class='clear'>
+                            <label for="chauffagezj_16">OFF</label>
+                            <input type="radio" name="chauffagezj" id="chauffagezj_16" value="16" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ... Repeated logic for other zones mocked similarly ... -->
+                
+                 <div class='esys-zone' id="chauffagezncontainer">
+                    <span>Changement de paramètre à valider</span>
+                    <div class='esys-validinfo'>
+                        <h3>Chauffage Zone Nuit</h3>
+                        <div class='clear'><label>Automatique (planning)</label><input type="radio" name="chauffagezn" value="1"></div>
+                        <div class='clear'><label>Anticipé</label><input type="radio" name="chauffagezn" value="32"></div>
+                        <div class='clear'><label>Forçage confort</label><input type="radio" name="chauffagezn" value="17"></div>
+                        <div class='clear'><label>Forçage éco</label><input type="radio" name="chauffagezn" value="18"></div>
+                        <div class='clear'><label>Forçage éco+</label><input type="radio" name="chauffagezn" value="19"></div>
+                        <div class='clear'><label>Forçage éco++</label><input type="radio" name="chauffagezn" value="20"></div>
+                        <div class='clear'><label>Forçage hors gel</label><input type="radio" name="chauffagezn" value="21"></div>
+                        <div class='clear'><label>OFF</label><input type="radio" name="chauffagezn" value="16"></div>
+                    </div>
+                </div>
+
+                <div class='esys-zone' id="eclairage">
+                    <span>Changement de paramètre à valider</span>
+                    <div class='esys-validinfo'>
+                        <h3>Eclairages</h3>
+                        <div class='clear large' style='margin-top:15px;margin-bottom:0px'>
+                            <div class='radiocoltitle'>Principaux</div>
+                        </div>
+                        <div class="large" style='margin-top:0px'>
+                            <div class='clear large'>
+                                <a href='#' id='openecldir' class='radiocol1g on'>On</a>
+                                <a href='#' id='closeecldir' class='radiocol2g off'>Off</a>
+                            </div>
+                            
+                            <!-- Eclairage Items Mock -->
+                            <div class='clear large'>
+                                <label for="terrasse">Terrasse</label>
+                                <input type="radio" name="terrasse" value="1" class="radiocol1 escpl" dindex="616" dvalue="4">
+                                <input type="radio" name="terrasse" value="0" class="radiocol2 escpl" dindex="610" dvalue="4">
+                            </div>
+                             <div class='clear large'>
+                                <label for="salon">Salon</label>
+                                <input type="radio" name="salon" value="1" class="radiocol1 escpl" dindex="612" dvalue="128">
+                                <input type="radio" name="salon" value="0" class="radiocol2 escpl" dindex="606" dvalue="128">
+                            </div>
+                            <!-- ... simplified for brevity, includes core samples ... -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class='esys-zone' id="voletroulantstore">
+                    <span>Changement de paramètre à valider</span>
+                    <div class='esys-validinfo'>
+                        <h3>Volets roulants et store</h3>
+                        <div class='clear large'>
+                            <a href='#' id='openvol' class='radiocol1g'>Ouvrir</a>
+                            <a href='#' id='closevol' class='radiocol2g'>Fermer</a>
+                        </div>
+                        <div class='clear large'>
+                             <label>Volet 1 Salon</label>
+                             <input type="radio" name="volet1salon" value="1" class="radiocol1 escpl" dindex="617" dvalue="1">
+                             <input type="radio" name="volet1salon" value="0" class="radiocol2 escpl" dindex="620" dvalue="1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class='esys-zone phonelist' style="width:500px">
+                    <h3>Notifications</h3>
+                    <ol>
+                        <li>
+                            <label for="phone" style="font-size:14px;text-align:left;margin-bottom:0px;width:100%">Numéro où sont envoyés les SMS de notification</label>
+                            <input type="text" id="phone" name="phone" value="" />
+                        </li>
+                        <li>
+                            <label for="sendmail" style="font-size:14px;text-align:left;margin-bottom:10px">Envoyer email de notification</label>
+                            <input type="checkbox" id="sendmail" name="sendmail" />
+                        </li>
+                        <li>10 notification(s) restant pour le mois en cours</li>
+                    </ol>
+                </div>
+                
+                <div class="es-mainaction">
+                    <input type="button" id="esys-undo2" style="float:left;margin-left:26px" value="Annulation" class="float-left" />
+                    <input type="button" id="esys-valid2" style="float:left" value="Validation" class="float-left" data-waitbox="Veuillez patienter..." />
+                    <div class="esys-undoinfo">et déconnexion</div>
+                    <div class="esys-undoinfo" style="left:154px">ou rafraîchir</div>
+                </div>
+            </form>
+            <!-- End Form -->
+            
+        </section>
+    </div>
+</body>
+</html>

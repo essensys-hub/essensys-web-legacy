@@ -606,4 +606,4 @@ coverage-report/
 .temp/
 .tmp/
 temp/
-tmp/
+tmp/static_preview.html
