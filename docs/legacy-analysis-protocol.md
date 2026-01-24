@@ -91,3 +91,22 @@ if(*uc_NouveauCodeSaisiLSB == Tb_Echange[Alarme_CodeUser1LSB] && *uc_NouveauCode
 Tb_Echange[Alarme_CodeSaisiLSB] = 0xFF; // On remet a 0xFF la table d'echange
 Tb_Echange[Alarme_CodeSaisiMSB] = 0xFF;
 ```
+
+### 5. Stockage du Mot de Passe Alarme (Firmware)
+
+Le mot de passe numérique à 4 chiffres est stocké dans l'EEPROM série de la carte (composant gérant aussi l'adresse MAC).
+
+- **Fichier Source** : `EepromAdresseMac.c` / `Alarme.c`
+- **Emplacement** : EEPROM, Offset `0x10` (16).
+- **Taille** : 2 octets.
+- **Format** : Packed BCD (2 chiffres par octet).
+
+**Structure des octets :**
+
+| Octet | Contenu (Code "1234") | Bits 0-3 (Low Nibble) | Bits 4-7 (High Nibble) | Valeur Hex |
+| :--- | :--- | :--- | :--- | :--- |
+| **LSB** (`Alarme_CodeUser1LSB`) | Chiffres 1 & 2 | **Chiffre 1** (ex: 1) | **Chiffre 2** (ex: 2) | `0x21` |
+| **MSB** (`Alarme_CodeUser1MSB`) | Chiffres 3 & 4 | **Chiffre 3** (ex: 3) | **Chiffre 4** (ex: 4) | `0x43` |
+
+*Note: Le code source inverse le sens de lecture standard pour les nibbles (Low = 1er chiffre).*
+
