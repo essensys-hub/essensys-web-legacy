@@ -110,3 +110,14 @@ Le mot de passe numérique à 4 chiffres est stocké dans l'EEPROM série de la 
 
 *Note: Le code source inverse le sens de lecture standard pour les nibbles (Low = 1er chiffre).*
 
+### 6. Gestion de la Confirmation (Succès/Échec)
+
+La carte utilise un index spécifique de la table d'échange pour notifier le succès ou l'échec de la vérification du code.
+
+- **Index de Retour** : `Alarme_Autorisation` (Index **307**).
+- **Valeurs de Retour** :
+    - `0` (`0x00`) : **En attente** (Traitement en cours)
+    - `1` (`0x01`) : **Succès** (Code valide, `uc_ALARME_AUTORISATION_CODE_VALIDE`)
+    - `2` (`0x02`) : **Échec** (Code invalide, `uc_ALARME_AUTORISATION_CODE_INVALIDE`)
+
+
