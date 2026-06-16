@@ -448,6 +448,7 @@ FodyWeavers.xsd
 # ===================================
 
 # Fichiers de configuration sensibles
+.kiro/settings/mcp.json
 appsettings.*.json
 !appsettings.json
 !appsettings.Development.json
